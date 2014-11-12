@@ -1,0 +1,48 @@
+package com.lssjzmn.bluetoothtest;
+
+import java.io.IOException;
+import java.util.UUID;
+
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+
+public class ConnectUtil {
+
+	private BluetoothSocket bluetoothSocket;
+	private BluetoothDevice bluetoothdevice;
+	private UUID uUID;
+
+	public ConnectUtil(BluetoothSocket socket, BluetoothDevice device,
+			UUID ID) {
+		this.bluetoothSocket = socket;
+		this.bluetoothdevice = device;
+		this.uUID = ID;
+		try {
+			bluetoothSocket = bluetoothdevice
+					.createRfcommSocketToServiceRecord(uUID);//无线射频通信套接字
+		} catch (IOException e) {
+			// 套接字创建失败
+		}
+	}
+
+	public Boolean connect() {
+		MainActivity.bluetoothAdapter.cancelDiscovery(); // 取消设备查找
+		try {
+			bluetoothSocket.connect();
+			MainActivity.isConnected = true;
+			return true;
+		} catch (IOException e) {
+			System.out.println("连接失败");
+			MainActivity.isConnected = false;
+			return false;
+		}
+	}
+
+	public void cancel() {
+		try {
+			bluetoothSocket.close();
+			MainActivity.isConnected = false;
+		} catch (IOException e) {
+		}
+	}
+}
