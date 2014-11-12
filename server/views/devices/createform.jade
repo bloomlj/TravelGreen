@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1 create a device here
+  form(action="/devices",method="post")
+    div.input-group
+        input(name="name",placeholder="名称")
+    div.input-group
+        input(name="address",placeholder="位置")
+    div.input-group
+        input(name="tags",placeholder="标签")
+    div.input-group
+        input(name="category",placeholder="1")
+    div.input-group
+        input(name="gps",placeholder="gps")
+    div.input-group
+        input(name="note",placeholder="备注")
+    button 提交
