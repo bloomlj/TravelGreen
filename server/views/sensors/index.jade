@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1 Devices
+  table
+    tr
+        th name
+        th device
+        th category
+        th datadefine
+        th note
+    each row in rows
+        tr
+            td= row.name
+            td= row.device_id
+            td= row.category
+            td= row.datadefine
+            td= row.note

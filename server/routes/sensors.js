@@ -1,32 +1,33 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET devices listing. */
+/* GET a sensors 's sensors listing. */
 router.get('/', function(req, res) {
   var  knex = req.app.get('knex');
-  knex.select('*').from('devices')
+  knex.select('*').from('sensors')
   .then(function(rows) {
    console.log(rows);
-   res.render('devices/index', {'rows':rows});
+   res.render('sensors/index', {'rows':rows});
   });
     
   //res.send('respond with a resource');
 });
 
-
-/* create a device form. */
+/* create a sensor form. */
 router.get('/createform', function(req, res) {
-   res.render('devices/createform', { title: 'Express' });
+    
+   res.render('sensors/createform', { title: 'Express' });
+    
 });
 
-/* read a device. */
+/* read a sensor. */
 router.get('/:id', function(req, res) {
   
   var  knex = req.app.get('knex');
-  knex('devices').where('id', req.params.id)
+  knex('sensors').where('id', req.params.id)
   .then(function(rows) {
    console.log(rows);
-   res.render('devices/detail', { row: rows[0] });
+   res.render('sensors/detail', { row: rows[0] });
   });
     
     
@@ -34,21 +35,21 @@ router.get('/:id', function(req, res) {
   //res.send('respond with a resource'+req.params.id);
 });
 
-/* read a device. */
+/* read a sensor. */
 router.get('/:id/editform', function(req, res) {
   
   var  knex = req.app.get('knex');
-  knex('devices').where('id', req.params.id)
+  knex('sensors').where('id', req.params.id)
   .then(function(rows) {
    console.log(rows);
-   res.render('devices/editform', { title: 'Express' });
+   res.render('sensors/editform', { title: 'Express' });
   });
     
     //console.log(req.params.id);
   //res.send('respond with a resource'+req.params.id);
 });
 
-/* update a device. */
+/* update a sensor. */
 router.put('/:id', function(req, res) {
     var  knex = req.app.get('knex');
    knex('sensors')
@@ -66,25 +67,25 @@ router.put('/:id', function(req, res) {
 
 
 
-/* create a device. */
-//test:curl --data "name=curltestxx&category=1" http://localhost:3000/devices
+/* create a sensor. */
+//test:curl --data "name=curltestxx&category=1" http://localhost:3000/sensors
 
 router.post('/', function(req, res) {
     console.log(req.param('name'));
     console.log(req.body);
     var  knex = req.app.get('knex');
-      knex('devices')
+      knex('sensors')
      .insert(req.body)
  // .insert([{name: 'pir'},{name: 'camera'}])
      .then(function(ret){
         console.log(ret);
-        res.redirect('/devices');
+        res.redirect('/sensors');
     });
     //console.log(req);
   //res.send('respond with a resource'+req.params.id);
 });
 
-/* delete a device. */
+/* delete a sensor. */
 router.delete('/', function(req, res) {
    console.log(req);
   res.send('respond with a resource'+req.params.id);

@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h1 create a device here
+  form(action="/devices",method="post")
+    div.input-group
+        input(name="sensor_id",placeholder="sensor id")
+    div.input-group
+        input(name="data",placeholder="json format data")
+    button go
