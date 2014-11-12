@@ -35,6 +35,20 @@ router.get('/:id', function(req, res) {
   //res.send('respond with a resource'+req.params.id);
 });
 
+
+/* read a sensor. */
+router.get('/api/:id', function(req, res) {
+  var  knex = req.app.get('knex');
+  knex('sensor_data').where('id', req.params.id)
+  .then(function(rows) {
+   console.log(rows);
+   sensordata = JSON.parse(rows[0]['data']);
+   res.json(sensordata)
+   //res.render('sensor_data/detail', { row: rows[0] });
+  });
+});
+
+
 /* read a sensor. */
 router.get('/:id/editform', function(req, res) {
   
