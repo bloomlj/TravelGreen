@@ -1,0 +1,30 @@
+obduino obd车载电脑
+http://obduino.ca/
+
+该电脑提供的信息有：
+
+    0xE0 - no display, meaning this corner will be blank
+    0xE1 - Instant fuel consumption
+    0xE2 - TANK : Average fuel consumption (since last tank reset)
+    0xE3 - TANK : Fuel used
+    0xE4 - TANK : Distance done
+    0xE5 - TANK : Fuel wasted while idling
+    0xE6 - TANK : Combo fuel consumption/distance done (3 digits only)
+    0xE7 - TANK : Remaining distance that can be done (autonomy)
+    0xE8 - TANK : Combo fuel consumption/remaining distance (3 digits only)
+    0xE9 - TRIP : Average fuel consumption (since last trip reset)
+    0xEA - TRIP : Fuel used
+    0xEB - TRIP : Distance
+    0xEC - TRIP : Fuel wasted while idling
+    0xED - TRIP : Combo fuel consumption/distance done (3 digits only)
+    0xEE - OUTING : Average fuel consumption
+    0xEF - OUTING : Fuel used
+    0xF0 - OUTING : Distance
+    0xF1 - OUTING : Fuel wasted while idling
+    0xF2 - OUTING : Combo fuel consumption/distance done (3 digits only)
+    0xF3 - Battery voltage 
+
+
+---------------------
+详细的OBD可提供数据列表
+http://en.wikipedia.org/wiki/OBD-II_PIDs
