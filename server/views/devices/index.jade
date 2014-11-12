@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1 Devices
+  table
+    tr
+        th name
+        th address
+        th tags
+        th gps
+        th note
+    each row in rows
+        tr
+            td= row.name
+            td= row.address
+            td= row.tags
+            td= row.gps
+            td= row.note
