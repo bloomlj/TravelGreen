@@ -99,6 +99,30 @@ router.post('/', function(req, res) {
   //res.send('respond with a resource'+req.params.id);
 });
 
+
+
+/* create a sensor. */
+//test:curl --data "name=curltestxx&category=1" http://localhost:3000/sensor_data
+
+router.post('/api', function(req, res) {
+    console.log(req.param('name'));
+    console.log(req.body);
+    var  knex = req.app.get('knex');
+      knex('sensor_data')
+     .insert(req.body)
+ // .insert([{name: 'pir'},{name: 'camera'}])
+     .then(function(ret){
+        console.log(ret);
+        //res.redirect('/sensor_data');
+        res.send(ret);
+    });
+    //console.log(req);
+  //res.send('respond with a resource'+req.params.id);
+});
+
+
+
+
 /* delete a sensor. */
 router.delete('/', function(req, res) {
    console.log(req);
