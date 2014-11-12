@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var devices = require('./routes/devices');
+var devices = require('./routes/sensors');
+var devices = require('./routes/sensor_data');
 
 var knex = require('knex')({
   client: 'mysql',
@@ -38,6 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/devices', devices);
+app.use('/sensors', devices);
+app.use('/sensor_data', devices);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

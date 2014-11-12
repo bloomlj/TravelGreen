@@ -13,11 +13,10 @@ router.get('/', function(req, res) {
   //res.send('respond with a resource');
 });
 
+
 /* create a device form. */
 router.get('/createform', function(req, res) {
-    
    res.render('devices/createform', { title: 'Express' });
-    
 });
 
 /* read a device. */

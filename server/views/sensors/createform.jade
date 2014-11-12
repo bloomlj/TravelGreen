@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1 create a device here
+  form(action="/devices",method="post")
+    div.input-group
+        input(name="name",placeholder="名称")
+    div.input-group
+        input(name="device_id",placeholder="device_id")
+    div.input-group
+        input(name="category",placeholder="1")
+    div.input-group
+        input(name="datadefine",placeholder="datadefine json")
+    div.input-group
+        input(name="note",placeholder="备注")
+    button 提交
