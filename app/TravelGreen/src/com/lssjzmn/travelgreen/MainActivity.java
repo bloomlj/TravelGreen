@@ -18,30 +18,23 @@ public class MainActivity extends TabActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
+
+		Intent intent = new Intent(MainActivity.this, Init.class);
+		startActivity(intent);
 		TabHost tabHost = this.getTabHost();
 		tabHost.setBackgroundColor(color.holo_blue_bright);
 
-		tabHost.addTab(tabHost
-				.newTabSpec("1")
-				.setIndicator("",
-						getResources().getDrawable(R.drawable.home))
+		tabHost.addTab(tabHost.newTabSpec("1")
+				.setIndicator("", getResources().getDrawable(R.drawable.home))
 				.setContent(new Intent(this, TabActivity1.class)));
-		tabHost.addTab(tabHost
-				.newTabSpec("2")
-				.setIndicator("",
-						getResources().getDrawable(R.drawable.share))
+		tabHost.addTab(tabHost.newTabSpec("2")
+				.setIndicator("", getResources().getDrawable(R.drawable.share))
 				.setContent(new Intent(this, TabActivity2.class)));
-		tabHost.addTab(tabHost
-				.newTabSpec("3")
-				.setIndicator("",
-						getResources().getDrawable(R.drawable.now))
+		tabHost.addTab(tabHost.newTabSpec("3")
+				.setIndicator("", getResources().getDrawable(R.drawable.now))
 				.setContent(new Intent(this, TabActivity3.class)));
-		tabHost.addTab(tabHost
-				.newTabSpec("4")
-				.setIndicator("",
-						getResources().getDrawable(R.drawable.tips))
+		tabHost.addTab(tabHost.newTabSpec("4")
+				.setIndicator("", getResources().getDrawable(R.drawable.tips))
 				.setContent(new Intent(this, TabActivity4.class)));
 
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {

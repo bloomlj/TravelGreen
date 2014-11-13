@@ -20,7 +20,7 @@ public class Init extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		handler.postDelayed(runnable, 5000); // 每隔1s执行
+		handler.postDelayed(runnable, 3000); // 每隔1s执行
 
 	}
 
