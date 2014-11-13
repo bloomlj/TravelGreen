@@ -42,7 +42,7 @@ public class TabActivity3 extends Activity {
 
 	private String URLPATH = "http://192.168.1.56/sensor_data/api/12";
 	private String JsonString = "";
-	private int tmpNum;
+	private int tmpNum = 10;
 	private int CurrentX = 13;
 	private int num = 0;
 	private int[] x = new int[] { 0, 4, 2, 7, 8, 9, 2, 3, 1, 0 };
@@ -84,6 +84,7 @@ public class TabActivity3 extends Activity {
 								.getJSONObject("data");
 						String tmp = jsonObject.getString("tmp");
 						tmpNum = Integer.valueOf(tmp);
+						tmpNum = 10;
 						handler.sendEmptyMessage(2);
 					} catch (JSONException e) {
 					}
@@ -99,8 +100,8 @@ public class TabActivity3 extends Activity {
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			if (msg.what == 1)
-				getJsonStrFromServer(URLPATH);
-			else if (msg.what == 2) {
+			// getJsonStrFromServer(URLPATH);
+			{
 				if (num == 10)
 					return;
 				xySeries.add(CurrentX, tmpNum + x[num]);// 刷新图表数据
