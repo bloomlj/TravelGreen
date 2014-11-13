@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="wrap_content"
+	android:layout_height="match_parent"  android:background="@drawable/loginbg">
+
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+	android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_marginLeft="10dp"
+	android:layout_marginRight="30dp" >
+	<TextView android:id = "@+id/usrTV" android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    	  android:text="username:"> </TextView>
+	<EditText android:id = "@+id/username" android:layout_width="match_parent" android:layout_height="wrap_content"></EditText>
+	</LinearLayout>
+	
+	<LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+	android:layout_height="wrap_content" android:layout_marginBottom="20dp" android:layout_marginLeft="10dp"
+	android:layout_marginRight="30dp">
+	<TextView android:id = "@+id/pwTV" android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    	  android:text="passwrod:"> </TextView>
+	<EditText android:id = "@+id/password" android:layout_width="match_parent" android:layout_height="wrap_content"></EditText>
+	</LinearLayout>
+</LinearLayout>

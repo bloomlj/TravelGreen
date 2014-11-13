@@ -1,149 +1,66 @@
 package com.lssjzmn.travelgreen;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-
-import org.achartengine.ChartFactory;
-import org.achartengine.chart.PointStyle;
-import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.renderer.XYSeriesRenderer;
-
+import android.R.color;
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
-import android.graphics.Color;
+import android.app.TabActivity;
+import android.content.Intent;
 import android.view.Menu;
-import android.view.View;
 import android.view.Window;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
-
-	private InputStream inputStream = null;
-	// private OutputStream outputStream = null;
-	public static Boolean isConnected = false;// 是否已连接设备的标志位
-
-	private LinearLayout chartlayout;
+@SuppressWarnings("deprecation")
+public class MainActivity extends TabActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题栏
-		setContentView(R.layout.activity_main);
-		chartlayout = (LinearLayout) findViewById(R.id.chartLayout);
+		
+		
+		TabHost tabHost = this.getTabHost();
+		tabHost.setBackgroundColor(color.holo_blue_bright);
 
-	}
+		tabHost.addTab(tabHost
+				.newTabSpec("1")
+				.setIndicator("",
+						getResources().getDrawable(R.drawable.home))
+				.setContent(new Intent(this, TabActivity1.class)));
+		tabHost.addTab(tabHost
+				.newTabSpec("2")
+				.setIndicator("",
+						getResources().getDrawable(R.drawable.share))
+				.setContent(new Intent(this, TabActivity2.class)));
+		tabHost.addTab(tabHost
+				.newTabSpec("3")
+				.setIndicator("",
+						getResources().getDrawable(R.drawable.now))
+				.setContent(new Intent(this, TabActivity3.class)));
+		tabHost.addTab(tabHost
+				.newTabSpec("4")
+				.setIndicator("",
+						getResources().getDrawable(R.drawable.tips))
+				.setContent(new Intent(this, TabActivity4.class)));
 
-	@SuppressWarnings("unused")
-	public void getData() {
-		if (!isConnected)
-			return;
-		byte[] dataBuffer = new byte[128];
-		int length;
-		try {
-			// inputStream = bluetoothSocket.getInputStream();
-			while (true) {
-				length = inputStream.read(dataBuffer);
-				String data = new String(dataBuffer, "UTF-8");
+		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
+			public void onTabChanged(String tabName) {
+				int tabNumber = Integer.valueOf(tabName);
+				switch (tabNumber) {
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				default:
+					break;
+				}
 			}
-		} catch (IOException e) {
-		}
-
-	}
-
-	@Override
-	protected void onResume() {
-
-		String chartTitle = "My Chart";// 图表标题
-		String xtitle = "CO2";// x轴名
-		String ytitle = "value";// y轴名
-		int[] X = new int[] { 1, 2, 3, 4, 5, 6, 7 };// 横坐标值
-		double[] Y = new double[] { 5, 5.3, 8, 12, 17, 22, 24.2 };// 纵坐标值
-		Arrays.sort(Y);// 纵坐标排序（升）
-		double maxY = Y[Y.length - 1] + 3;// 排序后纵坐标值最大值+5
-		int color = Color.BLUE;
-		PointStyle pointStyle = PointStyle.CIRCLE;
-
-		XYSeries xySeries = new XYSeries(chartTitle, 0);// 坐标数据集
-		XYMultipleSeriesDataset xyMultipleSeriesDataset = new XYMultipleSeriesDataset();
-		addXYSeries(xyMultipleSeriesDataset, xySeries, X, Y);
-
-		XYMultipleSeriesRenderer renderer = buildRenderer(color, pointStyle,
-				true);
-		setChartSettings(renderer, chartTitle, xtitle, ytitle, 0.5, 8, 0, maxY,
-				Color.YELLOW, Color.BLUE);// 坐标渲染器的参数设定
-
-		View view = ChartFactory.getLineChartView(getApplicationContext(),
-				xyMultipleSeriesDataset, renderer);// 获取图表视图
-		view.setBackgroundColor(Color.TRANSPARENT);
-		chartlayout.addView(view);
-		super.onResume();
-	}
-
-	private XYMultipleSeriesRenderer buildRenderer(int color,
-			PointStyle pointStyle, boolean fill) {
-		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		// 设置图表中曲线本身的样式，包括颜色、点的大小以及线的粗细等
-		XYSeriesRenderer r = new XYSeriesRenderer();
-		r.setColor(color);
-		r.setPointStyle(pointStyle);
-		r.setFillPoints(fill);
-		r.setLineWidth(3);
-		renderer.addSeriesRenderer(r);
-
-		return renderer;
-	}
-
-	private void setChartSettings(XYMultipleSeriesRenderer renderer,
-			String title, String xTitle, String yTitle, double xMin,
-			double xMax, double yMin, double yMax, int axesColor,
-			int labelsColor) {
-		renderer.setChartTitle(title);
-		renderer.setXTitle(xTitle);
-		renderer.setYTitle(yTitle);
-		renderer.setXAxisMin(xMin);
-		renderer.setXAxisMax(xMax);
-		renderer.setYAxisMin(yMin);
-		renderer.setYAxisMax(yMax);
-		renderer.setAxesColor(axesColor);
-		renderer.setLabelsColor(labelsColor);
-		renderer.setXLabels(8);
-		renderer.setBackgroundColor(Color.WHITE);
-		renderer.setShowGrid(true);
-		renderer.setZoomButtonsVisible(true);
-		renderer.setAxisTitleTextSize(15);
-		renderer.setChartTitleTextSize(20);
-		renderer.setShowLegend(false);
-	}
-
-	private void addXYSeries(XYMultipleSeriesDataset dataset,
-			XYSeries xySeries, int[] x, double[] y) {
-		int dataLength = x.length;
-		for (int i = 0; i < dataLength; i++) {
-			xySeries.add(x[i], y[i]);
-		}
-		dataset.addSeries(xySeries);
-	}
-
-	@Override
-	protected void onPause() {
-		try {
-			if (inputStream != null)
-				inputStream.close();
-		} catch (IOException e) {
-		}
-		super.onPause();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-
-		return true;
+		});
 	}
 
 }
